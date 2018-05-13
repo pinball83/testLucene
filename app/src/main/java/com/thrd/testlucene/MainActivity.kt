@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "MainActivity"
     }
 
-
     private val resultAdapter = SearchResultAdapter(emptyList())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +29,6 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = resultAdapter
-
         }
 
         handleIntent(intent)
@@ -54,7 +52,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleIntent(intent: Intent) {
-
         if (Intent.ACTION_SEARCH == intent.action) {
             val query = intent.getStringExtra(SearchManager.QUERY)
             query?.let { doSearch(it) }

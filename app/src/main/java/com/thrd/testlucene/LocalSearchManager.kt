@@ -22,10 +22,6 @@ import org.apache.tika.sax.BodyContentHandler
 import org.xml.sax.SAXException
 import java.io.IOException
 
-/**
- * @author thrd
- * @version 14.05.18.
- */
 object LocalSearchManager {
     val directory = RAMDirectory()
     @Throws(IOException::class)
