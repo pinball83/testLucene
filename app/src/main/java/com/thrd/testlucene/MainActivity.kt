@@ -12,13 +12,14 @@ import android.widget.SearchView
 
 class MainActivity : AppCompatActivity() {
 
-    companion object{
+    companion object {
         private const val TAG = "MainActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        LocalSearchManager.indexFile(this, "test_book.epub")
 
         handleIntent(intent)
     }
@@ -43,15 +44,17 @@ class MainActivity : AppCompatActivity() {
         handleIntent(intent)
     }
 
-    private fun handleIntent( intent: Intent) {
+    private fun handleIntent(intent: Intent) {
 
         if (Intent.ACTION_SEARCH == intent.action) {
             val query = intent.getStringExtra(SearchManager.QUERY)
             //use the query to search your data somehow
-            doSearch(query)
+            query?.let { doSearch(it) }
         }
     }
-    private fun doSearch(query: String?) {
+
+    private fun doSearch(query: String) {
         Log.d(TAG, "doSearch(): $query")
+        LocalSearchManager.searchInIndex(query)
     }
 }
